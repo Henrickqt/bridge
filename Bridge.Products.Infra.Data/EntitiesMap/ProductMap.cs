@@ -19,6 +19,17 @@ namespace Bridge.Products.Infra.Data.EntitiesMap
             builder.Property(p => p.ProductId).HasColumnType("int").UseIdentityColumn(1, 1).IsRequired();
             builder.Property(p => p.Name).HasColumnType("varchar").HasMaxLength(100).IsRequired();
             builder.Property(p => p.Price).HasColumnType("decimal(12,2)").IsRequired();
+            builder.Property(p => p.Quantity).HasColumnType("int").IsRequired();
+
+            builder
+                .HasMany(p => p.Orders)
+                .WithMany(o => o.Products)
+                .UsingEntity(
+                    "OrderProduct",
+                    o => o.HasOne(typeof(Product)).WithMany().HasForeignKey("ProductId").HasPrincipalKey(nameof(Product.ProductId)),
+                    p => p.HasOne(typeof(Order)).WithMany().HasForeignKey("OrderId").HasPrincipalKey(nameof(Order.OrderId)),
+                    j => j.HasKey("OrderId", "ProductId")
+                );
         }
     }
 }

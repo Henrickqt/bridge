@@ -11,6 +11,7 @@ namespace Bridge.Products.Infra.Data
     public class BridgeContext : DbContext
     {
         public DbSet<Product> Product { get; set; } = null!;
+        public DbSet<Order> Order { get; set; } = null!;
 
         public BridgeContext(DbContextOptions<BridgeContext> options) : base(options)
         {

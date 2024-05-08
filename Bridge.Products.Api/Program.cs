@@ -1,24 +1,64 @@
+using Bridge.Products.Infra.IoC;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddDIConfiguration(builder.Configuration);
+
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpClient();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", buider =>
+    {
+        buider.AllowAnyOrigin();
+        buider.AllowAnyHeader();
+        buider.AllowAnyMethod();
+    });
+});
+
+builder.Services.AddRouting();
+
+builder.Services.AddSwaggerGen(setup =>
+{
+    setup.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Bridge Products Api",
+        Version = "v1",
+        Description = "Api for product management",
+        Contact = new OpenApiContact
+        {
+            Name = "Bridge Ltda.",
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT",
+            Url = new Uri("https://opensource.org/licenses/mit"),
+        },
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAllOrigins");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseRouting();
 
 app.MapControllers();
 

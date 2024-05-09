@@ -13,6 +13,7 @@ namespace Bridge.Products.Infra.IoC
         public static void AddDIConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             InjectorBoostrapper.RegisterDbContext(services, configuration);
+            InjectorBoostrapper.RegisterRepositories(services);
         }
     }
 }

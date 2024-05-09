@@ -1,4 +1,6 @@
-﻿using Bridge.Products.Infra.Data;
+﻿using Bridge.Products.Application.Interfaces.Repositories;
+using Bridge.Products.Infra.Data;
+using Bridge.Products.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,12 @@ namespace Bridge.Products.Infra.IoC
                     opt => opt.MigrationsAssembly("Bridge.Products.Infra.Data"));
                 options.UseLazyLoadingProxies();
             });
+        }
+
+        public static void RegisterRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

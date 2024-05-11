@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Bridge.Products.Infra.IoC
         {
             InjectorBoostrapper.RegisterDbContext(services, configuration);
             InjectorBoostrapper.RegisterRepositories(services);
+            InjectorBoostrapper.RegisterServices(services);
+            InjectorBoostrapper.RegisterValidators(services);
         }
     }
 }

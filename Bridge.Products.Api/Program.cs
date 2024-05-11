@@ -1,4 +1,6 @@
+using Bridge.Products.Api.Middlewares;
 using Bridge.Products.Infra.IoC;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,12 @@ builder.Services.AddCors(options =>
         buider.AllowAnyHeader();
         buider.AllowAnyMethod();
     });
+});
+
+builder.Services.AddExceptionHandler(options =>
+{
+    options.ExceptionHandler = GlobalExceptionHandler.Handle;
+    options.AllowStatusCode404Response = true;
 });
 
 builder.Services.AddRouting();
@@ -51,6 +59,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseCors("AllowAllOrigins");
 

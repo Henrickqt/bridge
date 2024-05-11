@@ -21,17 +21,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3. ExternalServices", "4.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Tests", "5. Tests", "{1178B363-D0BF-47C8-B09E-CD5E069453E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Application", "Bridge.Products.Application\Bridge.Products.Application.csproj", "{24D53822-19DD-4DFC-9582-6A5FD9612041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Application", "Bridge.Products.Application\Bridge.Products.Application.csproj", "{24D53822-19DD-4DFC-9582-6A5FD9612041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Domain", "Bridge.Products.Domain\Bridge.Products.Domain.csproj", "{FE886613-D755-42C1-BC53-F95C5DE5213E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Domain", "Bridge.Products.Domain\Bridge.Products.Domain.csproj", "{FE886613-D755-42C1-BC53-F95C5DE5213E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Infra.Data", "Bridge.Products.Infra.Data\Bridge.Products.Infra.Data.csproj", "{4558BA99-A950-41EC-B09F-F45568D8A599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Infra.Data", "Bridge.Products.Infra.Data\Bridge.Products.Infra.Data.csproj", "{4558BA99-A950-41EC-B09F-F45568D8A599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Infra.IoC", "Bridge.Products.Infra.IoC\Bridge.Products.Infra.IoC.csproj", "{F7C9A5DD-9F24-4A9D-84F9-4976F5286BE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Infra.IoC", "Bridge.Products.Infra.IoC\Bridge.Products.Infra.IoC.csproj", "{F7C9A5DD-9F24-4A9D-84F9-4976F5286BE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Infra.ExternalServices", "Bridge.Products.Infra.ExternalServices\Bridge.Products.Infra.ExternalServices.csproj", "{A09CBF4B-C90E-4A26-9628-AB4549885E89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Infra.ExternalServices", "Bridge.Products.Infra.ExternalServices\Bridge.Products.Infra.ExternalServices.csproj", "{A09CBF4B-C90E-4A26-9628-AB4549885E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge.Products.Tests", "Bridge.Products.Tests\Bridge.Products.Tests.csproj", "{6663E627-33E8-4B89-B46F-D1EE9DA93174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge.Products.Tests", "Bridge.Products.Tests\Bridge.Products.Tests.csproj", "{6663E627-33E8-4B89-B46F-D1EE9DA93174}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BB0C44B0-2591-492B-80FA-66C374000357}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{6663E627-33E8-4B89-B46F-D1EE9DA93174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6663E627-33E8-4B89-B46F-D1EE9DA93174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6663E627-33E8-4B89-B46F-D1EE9DA93174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB0C44B0-2591-492B-80FA-66C374000357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB0C44B0-2591-492B-80FA-66C374000357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB0C44B0-2591-492B-80FA-66C374000357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB0C44B0-2591-492B-80FA-66C374000357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

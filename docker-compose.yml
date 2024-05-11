@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  bridge.products.api:
+    image: ${DOCKER_REGISTRY-}bridgeproductsapi
+    container_name: bridge.products.api
+    build:
+      context: .
+      dockerfile: Bridge.Products.Api/Dockerfile
+    ports:
+      - "5001:5001"
+      - "5000:5000"
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "etVRD#b0DXh@94BU"
+    volumes:
+      - ./.containers/sql-vol:/var/opt/mssql/data
+    ports:
+      - "1433:1433"

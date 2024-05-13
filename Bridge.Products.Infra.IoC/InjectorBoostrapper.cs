@@ -42,12 +42,14 @@ namespace Bridge.Products.Infra.IoC
         public static void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         public static void RegisterValidators(IServiceCollection services)
         {
             services.AddScoped<IValidator<CreateProductDto>, CreateProductDtoValidator>();
             services.AddScoped<IValidator<UpdateProductDto>, UpdateProductDtoValidator>();
+            services.AddScoped<IValidator<CreateOrderDto>, CreateOrderDtoValidator>();
         }
     }
 }

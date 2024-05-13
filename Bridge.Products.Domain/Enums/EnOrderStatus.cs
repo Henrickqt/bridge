@@ -18,6 +18,6 @@ namespace Bridge.Products.Domain.Enums
         [Description("Concluído")]
         Concluded,
         [Description("Cancelado")]
-        Canceld,
+        Canceled,
     }
 }

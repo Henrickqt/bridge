@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bridge.Products.Infra.Data\Bridge.Products.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>

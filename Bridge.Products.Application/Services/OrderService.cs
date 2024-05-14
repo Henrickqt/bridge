@@ -20,16 +20,19 @@ namespace Bridge.Products.Application.Services
         private readonly IOrderRepository _orderRepository;
         private readonly IValidator<CreateOrderDto> _createOrderValidator;
         private readonly IProductService _productService;
+        private readonly IKafkaProducer _kafkaProducer;
 
         public OrderService(IUnitOfWork unitOfWork,
             IOrderRepository orderRepository,
             IValidator<CreateOrderDto> createOrderValidator,
-            IProductService productService)
+            IProductService productService,
+            IKafkaProducer kafkaProducer)
         {
             _unitOfWork = unitOfWork;
             _orderRepository = orderRepository;
             _createOrderValidator = createOrderValidator;
             _productService = productService;
+            _kafkaProducer = kafkaProducer;
         }
 
         public async Task<IEnumerable<GetOrderDto>> GetAllOrdersAsync()
@@ -73,7 +76,10 @@ namespace Bridge.Products.Application.Services
                 await _unitOfWork.CommitAsync();
                 await _unitOfWork.CommitTransactionAsync();
 
-                return (GetOrderDto)result;
+                var response = (GetOrderDto)result;
+                await _kafkaProducer.ProduceAsync("send-notification", response);
+
+                return response;
             }
             catch (Exception)
             {

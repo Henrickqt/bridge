@@ -97,7 +97,6 @@ namespace Bridge.Products.Application.Services
             return (GetProductDto)result;
         }
 
-
         private async Task VerifyProductNameExists(string name, int? produtctId = null)
         {
             var product = produtctId == null
@@ -106,6 +105,53 @@ namespace Bridge.Products.Application.Services
 
             if (product != null)
                 throw new BadRequestException($"Já existe outro produto cadastrado com o nome {product.Name}.");
+        }
+
+        public async Task<IEnumerable<Product>> DecreaseProductsStockAsync(IEnumerable<string> names)
+        {
+            var products = new List<Product>();
+            
+            foreach (var name in names)
+            {
+                var product = await _productRepository.GetOneAsync(product => product.Name.ToLower() == name.ToLower().Trim());
+                if (product == null)
+                    throw new NotFoundException($"Produto {name} não encontrado.");
+
+                product.Quantity--;
+
+                if (product.Quantity < 0)
+                    throw new BadRequestException($"Produto {name} está sem estoque.");
+                
+                var result = _productRepository.Update(product);
+
+                products.Add(result);
+            }
+
+            await _unitOfWork.CommitAsync();
+
+            return products;
+        }
+
+        public async Task<IEnumerable<Product>> IncreaseProductsStockAsync(IEnumerable<string> names)
+        {
+            var products = new List<Product>();
+
+            foreach (var name in names)
+            {
+                var product = await _productRepository.GetOneAsync(product => product.Name.ToLower() == name.ToLower().Trim());
+                if (product == null)
+                    throw new NotFoundException($"Produto {name} não encontrado.");
+
+                product.Quantity++;
+
+                var result = _productRepository.Update(product);
+
+                products.Add(result);
+            }
+
+            await _unitOfWork.CommitAsync();
+
+            return products;
         }
     }
 }
